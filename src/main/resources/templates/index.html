@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset ="ISO-8859-1">
+  <title>My Thymeleaf Page</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+  <div class = "row">
+    <h1>Tasks List</h1>
+  </div>
+  <div class = "row">
+    <div class = "col-lg-3">
+      <a th:href = "@{/showNewTasksForm}" class = "btn btn-primary btn-sm  mb-3"> Add Tasks</a>
+    </div>
+  </div>
+  <table class = "table table table-striped table-bordered ">
+    <thead class = " table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Completed</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each ="task: ${tasks}">
+      <td th:text="${task.id}">
+      <td th:text = "${task.title}">
+      <td th:text = "${task.description}">
+      <td><input type="checkbox" th:checked="${task.completed}" th:onclick="'markCompleted(' + ${task.id} + ', ' + this.checked + ')'">
+      </td>
+
+      <td>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
